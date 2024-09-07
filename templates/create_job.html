@@ -7,7 +7,11 @@
     <label for="description">Description:</label>
     <textarea id="description" name="description" required></textarea><br>
     <label for="category">Category:</label>
-    <input type="text" id="category" name="category" required><br>
+    <select id="category" name="category" required>
+        {% for category in categories %}
+        <option value="{{ category }}">{{ category }}</option>
+        {% endfor %}
+    </select><br>
     <label for="salary">Salary:</label>
     <input type="text" id="salary" name="salary"><br>
     <button type="submit">Create</button>

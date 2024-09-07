@@ -14,21 +14,22 @@ class Job(db.Model):
 
 @app.route('/')
 def index():
-    jobs = Job.query.all()
-    return render_template('index.html', jobs=jobs)
+    category_filter = request.args.get('category')
+    if category_filter:
+        jobs = Job.query.filter_by(category=category_filter).all()
+    else:
+        jobs = Job.query.all()
+    categories = ['Engineering', 'Healthcare Nursing', 'Accounting Finance', 'Sales']
+    return render_template('index.html', jobs=jobs, categories=categories, selected_category=category_filter)
 
 @app.route('/job/<int:job_id>')
 def job_detail(job_id):
     job = Job.query.get_or_404(job_id)
     return render_template('job_detail.html', job=job)
 
-@app.route('/category/<string:category>')
-def category(category):
-    jobs = Job.query.filter_by(category=category).all()
-    return render_template('categories.html', jobs=jobs, category=category)
-
 @app.route('/create', methods=['GET', 'POST'])
 def create_job():
+    categories = ['Engineering', 'Healthcare Nursing', 'Accounting Finance', 'Sales']
     if request.method == 'POST':
         title = request.form['title']
         description = request.form['description']
@@ -40,7 +41,7 @@ def create_job():
         db.session.commit()
         
         return redirect(url_for('index'))
-    return render_template('create_job.html')
+    return render_template('create_job.html', categories=categories)
 
 if __name__ == '__main__':
     with app.app_context():
