@@ -1,16 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Job Listings</h1>
-<form method="GET" action="{{ url_for('index') }}">
-  <label for="label">Filter by label:</label>
-  <select id="label" name="label">
-      <option value="">All</option>
-      {% for label in categories %}
-      <option value="{{ label }}" {% if label==selected_label %}selected{% endif %}>{{ label }}</option>
-      {% endfor %}
-  </select>
-  <button type="submit">Filter</button>
-</form>
+<h1>Found out</h1>
 <div class="container">
     <div class="row">
       {% for job in jobs %}
@@ -26,5 +16,4 @@
       {% endfor %}
     </div>
   </div>
-
 {% endblock %}
