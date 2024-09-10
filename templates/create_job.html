@@ -9,9 +9,16 @@
     <label for="category">Category:</label>
     <select id="category" name="category" required>
         {% for category in categories %}
-        <option value="{{ category }}">{{ category }}</option>
+            {% if category == selectedCategory %}
+            <option value="{{ category }}" selected>{{ category }}</option>
+            {% else %}
+            <option value="{{ category }}">{{ category }}</option>
+            {% endif %}
         {% endfor %}
     </select><br>
+    {% if prediction %}
+    <p style="color: green">The job's category should be {{ prediction }} </p>
+    {% endif %}
     <label for="salary">Salary:</label>
     <input type="text" id="salary" name="salary" value="{{ salary }}"><br>
     <input type="submit" name="button" value="Classify" />

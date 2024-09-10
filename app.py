@@ -41,6 +41,7 @@ def create_job():
             f_title = request.form['title']
             f_content = request.form['description']
             f_salary = request.form['salary']
+            f_category = request.form['category']
             
             # Tokenize the content of the .txt file so as to input to the saved mode
             tokenized_data = tokenizeTxt(f_content)
@@ -61,20 +62,20 @@ def create_job():
             # Predict the label of tokenized_data
             y_pred = model.predict(X_tfidf_des)
             y_pred = y_pred[0]
-            print('y_pred', y_pred)
-            return render_template('create_job.html', category=y_pred, title=f_title, description=f_content, categories=categories, salary=f_salary)
-
-        title = request.form['title']
-        description = request.form['description']
-        category = request.form['category']
-        salary = request.form['salary']
-        
-        new_job = Job(title=title, description=description, category=category, salary=salary)
-        db.session.add(new_job)
-        db.session.commit()
+            print('category', f_category)
+            return render_template('create_job.html', prediction=y_pred, title=f_title, description=f_content, categories=categories, salary=f_salary, selectedCategory=f_category)
+        elif request.form['button'] == 'Save':
+            title = request.form['title']
+            description = request.form['description']
+            category = request.form['category']
+            salary = request.form['salary']
+            
+            new_job = Job(title=title, description=description, category=category, salary=salary)
+            db.session.add(new_job)
+            db.session.commit()
         
         return redirect(url_for('index'))
-    return render_template('create_job.html', categories=categories)
+    return render_template('create_job.html', categories=categories, selectedCategory="Engineering")
 
 if __name__ == '__main__':
     with app.app_context():
