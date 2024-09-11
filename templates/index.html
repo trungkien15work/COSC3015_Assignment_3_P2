@@ -1,24 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index-page.css') }}">
 <h1>Job Listings</h1>
+
 <form method="GET" action="{{ url_for('index') }}">
-  <label for="label">Filter by label:</label>
-  <select id="label" name="label">
-      <option value="">All</option>
-      {% for label in categories %}
-      <option value="{{ label }}" {% if label==selected_label %}selected{% endif %}>{{ label }}</option>
-      {% endfor %}
-  </select>
-  <button type="submit">Filter</button>
+    <label for="category">Filter by Category:</label>
+    <select id="category" name="category">
+        <option value="">All</option>
+        {% for category in categories %}
+        <option value="{{ category }}" {% if category==selected_category %}selected{% endif %}>{{ category }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Filter</button>
 </form>
-<div class="container">
+<div class="container"></div>
     <div class="row">
       {% for job in jobs %}
         <div class="col-md-4">
           <div class="card" >
             <div class="card-body">
               <h5 class="card-title">{{ job.title }}</h5>
-              <p class="card-text">{{ job.company }}</p>
+              <p class="card-text">{{ job.category }}</p>
               <a href="{{ url_for('job_detail', job_id=job.id) }}" class="btn btn-primary">Go to detail</a>
             </div>
           </div>
@@ -26,5 +28,4 @@
       {% endfor %}
     </div>
   </div>
-
 {% endblock %}

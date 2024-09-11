@@ -19,9 +19,9 @@
     {% if prediction %}
     <p style="color: green">The job's category should be {{ prediction }} </p>
     {% endif %}
-    <label for="company">Company:</label>
-    <input type="text" id="company" name="company" value="{{ company }}"><br>
-    <input type="submit" name="button" value="Classify" />
-    <input type="submit" name="button" value="Save" />
+    <label for="salary">Salary:</label>
+    <input type="text" id="salary" name="salary" value="{{ salary }}"><br>
+    <button type="submit" value="Classify" name="button">Classify</button>
+    <button type="submit"  value="Save"  name="button">Save</button>
 </form>
 {% endblock %}
