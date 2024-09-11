@@ -17,8 +17,6 @@ with open(r'.\stopwords_en.txt', 'r') as file:
     stopwords = file.read().splitlines()
 
 def genVec(wv, tk_txts):
-    # Fit and transform descriptions using the TfidfVectorizer
-    X_tfidf_des = tfidf_vec_des.fit_transform(tk_txts)
     docs_vectors = pd.DataFrame() # creating empty final dataframe
     #stopwords = nltk.corpus.stopwords.words('english') # if we haven't pre-processed the articles, it's a good idea to remove stop words
 
