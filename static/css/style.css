@@ -1,0 +1,88 @@
+.card {
+    padding: 20px 10px;
+    margin: 20px 5px;
+    height: 300px;
+    background-color: #ecf4ea;
+    box-shadow: 0 0 10px rgba(21, 21, 21, 0.1);
+    transition: all 0.2s ease-in-out;
+    justify-content: space-between; 
+    align-items: center;
+    overflow: hidden;
+}
+
+.card:hover{
+    background-color: #ffffff;
+    transform: scale(1.05);
+}
+
+.card-body {
+     text-align: center; /* Center text horizontally */
+
+}
+
+.btn-primary {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    color: #fff;
+    border: none;
+
+  }
+.btn {
+  display: block;
+  position: absolute;
+  bottom: 20px; 
+  left: 50%;
+  }
+
+h1 {
+  text-align: center;
+}
+
+.search-form {
+  float: left;
+  background-color: #343a40;
+  width: 450px;
+  height: 100px;
+  margin: 0;
+  padding: 32px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  box-shadow: none;
+  
+}
+
+label {
+	float:left;
+	font-size:14px;
+	font-weight:bold;
+	color:#a5a5a5;
+	line-height:29px;
+	padding-right:5px;
+}
+.fields {
+	float:left;
+	background:dark;
+	padding:0 5px;
+
+}
+.field {
+	float:left;
+	background:#e7e6e6;
+	border:0;
+	width:200px;
+	line-height:14px;
+	padding:7px 11px 4px 0;
+}
+.submit {
+	float:right;
+	width:17px;
+	height:27px;
+	background:url(search-submit.gif);
+	border:0;
+	cursor:submit;
+}
+
+.text {
+  padding: 10px;
+}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index-page.css') }}">
+<h1>Found out {{num_result}} for "{{search_string}}"</h1>
+<div class="container">
+    <div class="row">
+      {% for job in jobs %}
+        <div class="col-md-4">
+          <div class="card" >
+            <div class="card-body">
+              <h5 class="card-title">{{ job.title }}</h5>
+              <p class="card-text">{{ job.category }}</p>
+              <a href="{{ url_for('job_detail', job_id=job.id) }}" class="btn btn-primary">Go to detail</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
