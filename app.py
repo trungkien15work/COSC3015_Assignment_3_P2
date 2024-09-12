@@ -42,31 +42,24 @@ def create_job():
             f_content = request.form['description']
             f_salary = request.form['salary']
             f_category = request.form['category']
-            
             # Load the LR model
             model = joblib.load("models/LR_description_model.pkl")
-            
             # Load the tfidf vecto
-            tfidf_vec_des = joblib.load('models/description_tfidf.joblib')
-            
+            tfidf_vec_des = joblib.load('models/description_tfidf.joblib')     
             # Fit and transform descriptions using the TfidfVectorizer
             X_tfidf_des = tfidf_vec_des.fit_transform([f_content])
-
             # Predict the label of tokenized_data
             y_pred = model.predict(X_tfidf_des)
-            y_pred = y_pred[0]
-            
+            y_pred = y_pred[0] 
             return render_template('create_job.html', prediction=y_pred, title=f_title, description=f_content, categories=categories, salary=f_salary, selectedCategory=f_category)
         elif request.form['button'] == 'Save':
             title = request.form['title']
             description = request.form['description']
             category = request.form['category']
             salary = request.form['salary']
-            
             new_job = Job(title=title, description=description, category=category, salary=salary)
             db.session.add(new_job)
             db.session.commit()
-        
         return redirect(url_for('index'))
     return render_template('create_job.html', categories=categories, selectedCategory="Engineering")
 
@@ -90,9 +83,7 @@ def search():
             jobs = cursor.fetchall()
             num_result = len(jobs)
             conn.close()
-
             return render_template('search.html', jobs = jobs, search_string = search_string, num_result = num_result) # Get to the search.html with all the jobs similar with searching string
-   
     else: # Else go to home page
         return render_template('home.html')
 

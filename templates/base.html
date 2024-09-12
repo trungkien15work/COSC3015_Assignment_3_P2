@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Job Hunting Website</title>
     <style>
         body {
@@ -72,9 +73,11 @@
         button:hover {
             background-color: #555;
         }
+
         h1 {
             text-align: center;
         }
+
         .search-form {
             background-color: #343a40;
             width: 450px;
@@ -86,21 +89,21 @@
             box-shadow: none;
             display: flex;
             align-items: center;
- 
+
         }
 
         label {
             font-size: 14px;
             font-weight: bold;
             color: #a5a5a5;
-            margin-right: 5px; 
+            margin-right: 5px;
         }
 
         .fields {
             display: flex;
             align-items: center;
             width: 100%;
-            background-color:dark;
+            background-color: dark;
             padding: 0 5px;
             border-radius: 5px;
         }
@@ -120,10 +123,10 @@
             background: url(static/search-submit.gif) no-repeat center;
             background-size: contain;
             border: none;
-            cursor:submit;
-            margin-left: 10px; 
-            margin-bottom: 12px;   
-            
+            cursor: submit;
+            margin-left: 10px;
+            margin-bottom: 12px;
+
         }
     </style>
 </head>
@@ -135,7 +138,6 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a href="{{ url_for('index') }}">Home</a>
-                        
                     </li>
                     <li class="nav-item">
                         <a href="{{ url_for('create_job') }}">Create Job</a>
@@ -144,8 +146,8 @@
                 <form action="/search" method="POST" class="search-form">
                     <label for="search-string">Search</label>
                     <div class="fields">
-                      <input type="text" name="searchword" class="field" />
-                      <input type="submit" name="search" value="" class="submit" />
+                        <input type="text" name="searchword" class="field" />
+                        <input type="submit" name="search" value="" class="submit" />
                     </div>
                 </form>
             </div>
