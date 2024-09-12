@@ -19,7 +19,7 @@
     {% if prediction %}
     <p style="color: green">The job's category should be {{ prediction }} </p>
     {% endif %}
-    <label for="salary">Salary:</label>
+    <label for="salary">Salary (USD):</label>
     <input type="text" id="salary" name="salary" value="{{ salary }}"><br>
     <button type="submit" value="Classify" name="button">Classify</button>
     <button type="submit" value="Save" name="button">Save</button>

@@ -42,20 +42,15 @@ def create_job():
             f_content = request.form['description']
             f_salary = request.form['salary']
             f_category = request.form['category']
-            
             # Load the LR model
             model = joblib.load("models/LR_description_model.pkl")
-            
             # Load the tfidf vecto
             tfidf_vec_des = joblib.load('models/description_tfidf.joblib')
-            
             # Fit and transform descriptions using the TfidfVectorizer
             X_tfidf_des = tfidf_vec_des.fit_transform([f_content])
-
             # Predict the label of tokenized_data
             y_pred = model.predict(X_tfidf_des)
             y_pred = y_pred[0]
-            
             return render_template('create_job.html', prediction=y_pred, title=f_title, description=f_content, categories=categories, salary=f_salary, selectedCategory=f_category)
         elif request.form['button'] == 'Save':
             title = request.form['title']
