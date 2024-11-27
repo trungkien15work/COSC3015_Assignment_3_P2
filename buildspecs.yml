@@ -7,22 +7,25 @@ phases:
     commands:
       - echo Installing dependencies...
       - pip install -r requirements.txt -t ./package
+
   build:
     commands:
       - echo Build started on `date`
       - echo Compiling the Python files...
       - python -m compileall .
+
   post_build:
     commands:
       - echo Build completed on `date`
+
 artifacts:
   files:
     - appspec.yml
-    - package/**/*
-    - scripts/**/*
-    - models/**/*
-    - templates/**/*
-    - static/**/*
-    - *.py
-    - jobs.db
+    - 'package/**/*'
+    - 'scripts/**/*'
+    - 'models/**/*'
+    - 'templates/**/*'
+    - 'static/**/*'
+    - '*.py'
+    - 'jobs.db'  # If you're including the database file
   discard-paths: no
