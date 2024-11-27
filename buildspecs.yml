@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.10  # or your preferred Python version
+    commands:
+      - echo Installing dependencies...
+      - pip install -r requirements.txt -t ./package
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Compiling the Python files...
+      - python -m compileall .
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - appspec.yml
+    - package/**/*
+    - scripts/**/*
+    - models/**/*
+    - templates/**/*
+    - static/**/*
+    - *.py
+    - jobs.db
+  discard-paths: no

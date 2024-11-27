@@ -5,9 +5,9 @@ import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
 import os, sqlite3
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///jobs.db'
-db = SQLAlchemy(app)
+application = Flask(__name__)
+application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///jobs.db'
+db = SQLAlchemy(application)
 
 class Job(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -16,7 +16,7 @@ class Job(db.Model):
     category = db.Column(db.String(50), nullable=False)
     salary = db.Column(db.String(50), nullable=True)
 
-@app.route('/')
+@application.route('/')
 def index():
     category_filter = request.args.get('category')
     if category_filter:
@@ -26,12 +26,12 @@ def index():
     categories = ['Engineering', 'Healthcare Nursing', 'Accounting Finance', 'Sales']
     return render_template('index.html', jobs=jobs, categories=categories, selected_category=category_filter)
 
-@app.route('/job/<int:job_id>')
+@application.route('/job/<int:job_id>')
 def job_detail(job_id):
     job = Job.query.get_or_404(job_id)
     return render_template('job_detail.html', job=job)
 
-@app.route('/create', methods=['GET', 'POST'])
+@application.route('/create', methods=['GET', 'POST'])
 def create_job():
     categories = ['Engineering', 'Healthcare Nursing', 'Accounting Finance', 'Sales']
     if request.method == 'POST':
@@ -63,7 +63,7 @@ def create_job():
         return redirect(url_for('index'))
     return render_template('create_job.html', categories=categories, selectedCategory="Engineering")
 
-@app.route('/search', methods = ['POST'])
+@application.route('/search', methods = ['POST'])
 def search():
     if request.method == 'POST': # If user search
         folder_path = 'instance'
@@ -88,6 +88,6 @@ def search():
         return render_template('home.html')
 
 if __name__ == '__main__':
-    with app.app_context():
+    with application.app_context():
         db.create_all()
-    app.run(debug=True)
+    application.run(debug=True)
