@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      python: 3.10  # or your preferred Python version
+      python: 3.12  # or your preferred Python version
     commands:
       - echo Installing dependencies...
       - pip install -r requirements.txt -t ./package
